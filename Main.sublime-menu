@@ -1,0 +1,14 @@
+[
+{
+    "id" : "tools",
+    "caption": "Tools",
+    "mnemonic": "t",
+    "children" : [
+        {
+            "id" : "gitlinksSearch",
+            "caption" : "Search on Gitlinks",
+            "command": "gitlinks_search"
+        }
+    ]
+}
+]

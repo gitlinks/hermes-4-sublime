@@ -1,0 +1,6 @@
+[
+{ 
+	"keys": ["ctrl+super+g"],
+	"command": "gitlinks_search"
+}
+]
