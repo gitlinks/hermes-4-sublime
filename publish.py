@@ -7,6 +7,7 @@ import semver
 import argparse
 import getpass
 import subprocess
+import json
 from pathlib import Path
 
 # ------------------------------------------------
@@ -88,10 +89,18 @@ else:
     version = semver.bump_patch(version)
 VERSION_FILE_PATH.write_text(version)
 
+# Clean up authentication in preferences
+SETTINGS_FILE = CURRENT_PATH / "hermes.sublime-settings"
+settings = json.loads(SETTINGS_FILE.read_text())
+settings["email"] = ""
+settings["token"] = ""
+SETTINGS_FILE.write_text(json.dumps(settings, indent=4))
+
 # git commit and tag
 subprocess.call(["git", "add", "-A"])
 subprocess.call(["git", "commit", "-m", "Publish version " + version + ""])
 subprocess.call(["git", "tag", "-a", version, "-m", version])
-subprocess.call(["git", "push", "--all"])
+subprocess.call(["git", "push", "--tags"])
+subprocess.call(["git", "push"])
 
 print("New version published")
