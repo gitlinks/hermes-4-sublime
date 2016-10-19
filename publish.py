@@ -90,8 +90,8 @@ VERSION_FILE_PATH.write_text(version)
 
 # git commit and tag
 subprocess.call(["git", "add", "-A"])
-subprocess.call(["git", "commit", "-m", "'Publish version" + version + "'"])
-subprocess.call(["git", "tag", version])
+subprocess.call(["git", "commit", "-m", "Publish version " + version + ""])
+subprocess.call(["git", "tag", "-a", version, "-m", version])
 subprocess.call(["git", "push", "--all"])
 
 print("New version published")
